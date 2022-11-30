@@ -55,14 +55,71 @@ function d3ScatterPlot() {
 	  // Add brushing
 	  svg
 	    .call( d3.brush()                 // Add the brush feature using the d3.brush function
-	      .extent( [ [0,0], [width,height] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+	      .extent( [ [0,0], [width+50,height+50] ] ) // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
 	      .on("start brush", updateChart) // Each time the brush selection changes, trigger the 'updateChart' function
+	      .on("end", displayTable)
 	    )
+
+	     function displayTable() {
+
+                // disregard brushes w/o selections  
+                // ref: http://bl.ocks.org/mbostock/6232537
+                if (!d3.event.selection) return;
+
+                // programmed clearing of brush after mouse-up
+                // ref: https://github.com/d3/d3-brush/issues/10
+                //d3.select("#scatterPlot").call(brush.move, null);
+
+                var d_brushed =  d3.selectAll(".selected").data();
+                console.log(d_brushed);
+                // populate table if one or more elements is brushed
+                if (d_brushed.length > 0) {
+                    clearTableRows();
+                    d_brushed.forEach(d_row => populateTableRow(d_row))
+                } else {
+                    clearTableRows();
+                }
+            }
+
+ 		function clearTableRows() {
+
+            //hideTableColNames();
+            d3.selectAll(".row_data").remove();
+        }
+        function hideTableColNames() {
+            d3.select("table").style("visibility", "hidden");
+        }
+
+        function showTableColNames() {
+            d3.select("table").style("visibility", "visible");
+        }
+
+        function populateTableRow(d_row) {
+
+            showTableColNames();
+
+            // var d_row_filter = [d_row.state, 
+            //                     formatIncome(d_row.income), 
+            //                     formatHsGrad(d_row.hs_grad)];
+
+            d3.select("table")
+              .append("tr")
+              .attr("class", "row_data")
+              .selectAll("td")
+              .data(dictVal)
+              .enter()
+              .append("td")
+              .attr("align", (d, i) => i == 0 ? "left" : "right")
+              .text(d => d);
+        }
+
+
 
 	  // Function that is triggered when brushing is performed
 	  function updateChart() {
 	    extent = d3.event.selection
 	    circles.classed("selected", function(d){ return isBrushed(extent, x(d[0]), y(d[1])) } )
+	    clearTableRows();
 	  }
 
 	  // A function that return TRUE or FALSE according if a dot is in the selection or not
@@ -74,7 +131,5 @@ function d3ScatterPlot() {
 	      return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;    // This return TRUE or FALSE depending on if the points is in the selected area
 	  }
 
-
-        
      });
 }

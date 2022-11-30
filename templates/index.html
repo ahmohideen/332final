@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>CSE 332 Lab 5 - Dashboard</title>
+<head>
+  <!-- D3 Functionality -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- My Functionality -->
+  <!-- <script src="js/dashboardFunctionality.js"></script>
+  <script src="js/bivariateScatterPlotFunctionality.js"></script>
+  <script src="js/parallelCoordinatesDisplayFunctionality.js"></script>
+  <script src="js/10x10CorrelationMatrixFunctionality.js"></script>
+  <script src="js/mdsAttributeDisplayFunctionality.js"></script>
+  <script src="js/mdsDataDisplayFunctionality.js"></script> -->
+  <!-- Materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
+  <!-- Google's custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+  <!-- My CSS -->
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+
+<body>
+  <p>CSE 332 DASHBOARD</p>
+  <div id="pieChart"></div>
+  <div id="scatterPlot"></div>
+
+</body>
+
+<script>
+    const pieChartDataUrl = "{{ url_for('get_piechart_data') }}";
+
+</script>
+<script src="{{ url_for('static', filename='js/pieChart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/scatterPlot.js') }}"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+
+<script>
+
+</script>
+
+
+</html>

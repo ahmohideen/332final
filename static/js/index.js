@@ -7,5 +7,7 @@ function run(dataset) {
     console.log("index.js dataset");
     console.log(dataset);
     d3PieChart(dataset[0]);
+    d3BarChart();
     d3ScatterPlot();
+    geoMap();
 };

@@ -5,15 +5,26 @@ function d3ScatterPlot() {
         console.log(p);
         dummyData = {"Henry Street School for International Studies": [40, 45], "University Neighborhood High School": [77, 78], 
 		"Marta Valle High School": [99, 100]};
+		console.log(d3.entries(dummyData));
         console.log(dummyData);
+        //var dictKeys = Object.values(dummyData).map()
+        var keysArray = Object.keys(dummyData);
+        console.log(keysArray);
         var dictVal = Object.keys(dummyData).map(key => dummyData[key]);
         console.log(dictVal);
+        dictVal.forEach((item, i) => {
+        	item.id = i;
+        })
+        console.log(dictVal);
+        //okay so tmrw just take the array of dict keys
+        //and use the id field to map to names inside the table
+        //sum like that
 
 
 		// set the dimensions and margins of the graph
 		var margin = {top: 10, right: 30, bottom: 30, left: 60},
-		    width = 460 - margin.left - margin.right,
-		    height = 400 - margin.top - margin.bottom;
+		    width = 370 - margin.left - margin.right,
+		    height = 330 - margin.top - margin.bottom;
 
 		// append the svg object to the body of the page
 		var svg = d3.select("#scatterPlot")
@@ -97,16 +108,16 @@ function d3ScatterPlot() {
         function populateTableRow(d_row) {
 
             showTableColNames();
-
-            // var d_row_filter = [d_row.state, 
-            //                     formatIncome(d_row.income), 
-            //                     formatHsGrad(d_row.hs_grad)];
+            
+            var d_row_filter = [keysArray[d_row.id], //for now
+                               d_row[0], 
+                                d_row[1]];
 
             d3.select("table")
               .append("tr")
               .attr("class", "row_data")
               .selectAll("td")
-              .data(dictVal)
+              .data(d_row_filter)
               .enter()
               .append("td")
               .attr("align", (d, i) => i == 0 ? "left" : "right")

@@ -2,7 +2,7 @@ function d3PieChart(dataset){
     console.log(dataset);
     pie_data = {};
     data_2 = [];
-
+    boroughs = []
     d3.json("/get_piechart_data", function(p) {
         pie_data = p;
         console.log(pie_data);
@@ -36,7 +36,10 @@ function d3PieChart(dataset){
         const arc = svg
           .selectAll()
           .data(pieGenerator(d3.entries(pie_data)))
-          .enter();
+          .enter()
+          .append("svg:g")               
+          .on("click", click);
+          
 
         arc
           .append('path')
@@ -51,9 +54,17 @@ function d3PieChart(dataset){
           .attr('alignment-baseline', 'middle')
           .text(function(d){ return d.data.key})
           .style('fill', (_, i) => color(5))
+
           .attr('transform', (d) => {
             const [x, y] = arcGenerator.centroid(d);
             return `translate(${x}, ${y})`;})
+
+        //Function to update barchart when a piechart slice is clicked
+        function click(d, i) {
+            borough = d.data.key;
+            console.log("clicked!");
+            updateBarChart(d.data.key);
+         }
 
         //THIS CODE WORKS --> 
         // // set the dimensions and margins of the graph
@@ -103,9 +114,5 @@ function d3PieChart(dataset){
     });
     
 
-    //Function to update barchart when a piechart slice is clicked
-    function click(d, i) {
-        console.log("clicked!");
-        //updateBarChart(d.data.category, color(i), datasetBarChart);
-     }
+    
 }

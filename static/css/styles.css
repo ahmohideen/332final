@@ -32,6 +32,7 @@ img {
   display: block;
 }
 
+
 .about {
     margin: 10% 2%;
     width: 40%;
@@ -59,28 +60,54 @@ a {
 }
 
 #pieChart {
-    margin-top: 4em;
+    margin-top: 1em;
+    margin-left: 1em;
     font-size: 12px;
+    max-height: 310px;
 }
 
 #scatterPlot {
-    margin-top: 6em;
+    /*margin-top: 6em;*/
     font-size: 12px;
-    margin-left: 8em;
+    position: absolute;
+    left: 400px;
+    margin-top: 1em;
+
+    /*margin-left: 8em;*/
+}
+#table {
+    position: absolute;
+    left: 900px;
+    /*max-width: 100%;*/
 }
 
 #barChart {
     font-size: 9px;
-    margin-top: 4em;
+    position: absolute;
+    top: 350px;
+    margin-left: -1em;
+    /*padding-top: 500px;*/
+   /* margin-top: 35em;
+    padding-right: 50px;*/
+}
+
+#map-container {
+    margin-top: 13em;
 }
 
 #pieChart .title, #barChart .title{
     font-weight: bold;
 }
 
+.boroughs {
+    fill: rgb(222,235,247);
+    stroke: #000;
+    stroke-width: 0.5px;
+}
+
 .slice {
     font-size: 8px;
-     font-family: "Roboto Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     fill: white;
     font-weight: bold;   
     cursor: pointer;

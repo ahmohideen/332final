@@ -26,7 +26,7 @@
 </head>
 
 
-<body>
+<body style="background-color:'#e8ebe9';">
  <!--  <p>CSE 332 DASHBOARD</p> -->
   <div id="pieChart"></div>
   <div id="barChart"></div>
@@ -34,7 +34,7 @@
   <!-- <button onclick="update(data1)">Variable 1</button>
   <button onclick="update(data2)">Variable 2</button> -->
   <div id="scatterPlot"></div>
-  <div id="table">
+  <div id="table" style="overflow-y: scroll;">
         <table>
             <tr>
                 <th>High School</th>
@@ -52,9 +52,9 @@
 
 </script>
 <script src="{{ url_for('static', filename='js/pieChart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/scatterPlot.js') }}"></script>
 <script src="{{ url_for('static', filename='js/barChart.js') }}"></script>
 <script src="{{ url_for('static', filename='js/updateBarChart.js') }}"></script>
-<script src="{{ url_for('static', filename='js/scatterPlot.js') }}"></script>
 <script src="{{ url_for('static', filename='js/geoMap.js') }}"></script>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 

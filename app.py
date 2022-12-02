@@ -72,13 +72,13 @@ for idx, row in fullProfilesv2.iterrows():
 	elif row["Boro"] == "R":
 		boroughs["Staten Island"] += 1
 
-print(fullProfilesv2['reviewScore'], flush=True)
+print(fullProfilesv2['gradStat'], flush=True)
 
 locationData = []
 for idx, row in fullProfilesv2.iterrows():
-	locationData.append({"longitude": row['longitude'], "latitude": row['latitude']})
+	stat = float(row["collegeStat"].replace("%", ""))
+	locationData.append({"longitude": row['longitude'], "latitude": row['latitude'], "name": row['Printed_Name'], "stat": stat})
 #print(locationData)
-
 
 
 #thursday - last touches on all components ughhh
@@ -90,7 +90,7 @@ for idx, row in fullProfilesv2.iterrows():
 
 
 
-scatterPlot = {}
+
 #so this is gonna go {borough: [proficient, developing, well developed]...}
 reviewScoreBoroughs = {"Bronx": [0, 0, 0], "Brooklyn": [0, 0, 0], "Manhattan": [0, 0, 0], "Queens": [0, 0, 0], "Staten Island": [0, 0, 0]}
 for idx, row in fullProfilesv2.iterrows():
@@ -138,6 +138,18 @@ for idx, row in fullProfilesv2.iterrows():
 
 
 print(reviewScoreBoroughs)
+scatterPlotData = []
+for idx, row in fullProfilesv2.iterrows():
+	name = row['Printed_Name']
+	collegeStat = float(row["collegeStat"].replace("%", ""))
+	gradStat = float(str(row["gradStat"]).replace("%", ""))
+	scatterPlotData.append({"name": name, "collegeStat": collegeStat, "gradStat": gradStat})
+	#scatterPlotData[name] = [collegeStat, gradStat]
+
+
+
+
+
 
 
 @app.route("/")
@@ -151,10 +163,7 @@ def get_piechart_data():
 
 @app.route('/get_scatterplot_data')
 def get_scatterplot_data():
-	#okay so let's get our scatterplot data in order
-	#we want school name, collegeStat, and gradStat
-	#maybe like --> {schoolName: [collegeStat, gradState]}
-	return jsonify(boroughs)#jsonify(fullProfilesv2)#let's do this for now
+	return jsonify(scatterPlotData)
 
 @app.route('/get_barchart_data')
 def get_barchart_data():

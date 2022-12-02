@@ -3,8 +3,8 @@ function d3BarChart(){
 	//so we need to receive data HERE from the pie chart...
 
 	d3.json("/get_barchart_data", function(data) {
-		console.log("at barchart...");
-		console.log(data);
+		//console.log("at barchart...");
+		//console.log(data);
 
 		var manhattan = [
 		   {group: "Proficient", value: 0},
@@ -31,6 +31,7 @@ function d3BarChart(){
 		   {group: "Developing", value: 0},
 		   {group: "Well Developed", value: 0}
 		]
+		name = "Manhattan";
 		data["Manhattan"].forEach((item, i) => {
         	manhattan[i].value = item
         })
@@ -94,6 +95,13 @@ function d3BarChart(){
 		      .attr("height", function(d) { return height - y(d.value); })
 		      .attr("fill", "pink")
 
+		  // svg.append("text")
+		  //  .attr("x", width/2)
+		  //  .attr("y", .2)
+		  //  .attr("text-anchor", "middle")
+		  //  .style("font-size", "16px")
+		  //  .attr("id", 1)
+		  //  .text(function(d) { return "Manhattan"});
 
 		  //ughhhhhh
 

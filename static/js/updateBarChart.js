@@ -1,11 +1,11 @@
 function updateBarChart(group) {
-	console.log("updating bar chart...");
-	console.log(group);
+	//console.log("updating bar chart...");
+	//console.log(group);
 
 	d3.json("/get_barchart_data", function(data) {
-		console.log("at barchart...");
-		console.log(data);
-
+		//console.log("at barchart...");
+		//console.log(data);
+		name = "";
 		var manhattan = [
 		   {group: "Proficient", value: 0},
 		   {group: "Developing", value: 0},
@@ -50,6 +50,7 @@ function updateBarChart(group) {
         data2 = [];
 
         if(group == "Manhattan") {
+
         	data2 = manhattan;
         }
         if(group == "Bronx") {
@@ -64,6 +65,7 @@ function updateBarChart(group) {
         if(group == "Staten Island") {
         	data2 = staten_island;
         }
+        name = group;
 
 		// set the dimensions and margins of the graph
 		var margin = {top: 30, right: 30, bottom: 70, left: 60},
@@ -99,7 +101,6 @@ function updateBarChart(group) {
 		  .attr("class", "myYaxis")
 		  .call(d3.axisLeft(y));
 
-
 		
 
 		d3.selectAll("rect").remove();
@@ -128,6 +129,14 @@ function updateBarChart(group) {
 		      .attr("height", function(d) { return height - y(d.value); })
 		      .attr("fill", "pink")
 
+		// svg.append("text")
+		//    .attr("x", width/2)
+		//    .attr("y", .2)
+		//    .attr("text-anchor", "middle")
+		//    .style("font-size", "16px")
+		//    .data(data2)
+		//    .text(function(d) { return group});
+		
 
 
 	});

@@ -24,6 +24,7 @@ body {
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+
 }
 
 /* Make images easier to work with */
@@ -76,10 +77,32 @@ a {
     /*margin-left: 8em;*/
 }
 #table {
-    position: absolute;
-    left: 900px;
+    /*position: absolute;*/
+    left: 550px;
+    margin-top: 25em;
+    margin-left: 8em;
+    overflow-y: scroll;
+    height: 400px;
+    width: 340px;
+    /*overflow-y: auto;*/
+    /*font-size: 12px;*/
     /*max-width: 100%;*/
 }
+div.tooltip {   
+    position: absolute;         
+    text-align: center;         
+    /*width: 60px;                    
+    height: 28px;                   
+    padding: 2px;*/               
+    font: 12px sans-serif;      
+    background: lightsteelblue; 
+    border: 0px;        
+    border-radius: 5px;         
+    pointer-events: none;           
+}
+/*table {
+  overflow-y: scroll;
+}*/
 
 #barChart {
     font-size: 9px;
@@ -92,7 +115,9 @@ a {
 }
 
 #map-container {
-    margin-top: 13em;
+    margin-top: 1em;
+    position: fixed;
+    left: 640px;
 }
 
 #pieChart .title, #barChart .title{

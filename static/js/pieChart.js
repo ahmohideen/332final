@@ -1,20 +1,21 @@
 function d3PieChart(dataset){
-    console.log(dataset);
+    //console.log(dataset);
     pie_data = {};
     data_2 = [];
     boroughs = []
     d3.json("/get_piechart_data", function(p) {
         pie_data = p;
-        console.log(pie_data);
+        //console.log(pie_data);
         var dictVal = Object.keys(pie_data).map(key => pie_data[key]);
-        console.log(dictVal);
+        //console.log(dictVal);
 
         const margin = {top:20, right:20, bottom:20, left:20};
         const width = 350 - margin.left - margin.right,
         height = 350 - margin.top - margin.bottom,
         outerRadius = Math.min(width, height) / 2, 
         innerRadius = outerRadius * .5,
-        color = d3.scaleOrdinal(d3.schemeAccent); //color scheme
+        color = d3.scaleOrdinal([`#a2d1e0`, `#b4b1f0`, `#ebb9ab`, `#abebb1`, `#eda011`, `#9ad6af`, `#b74a70`, `#946943`]); //color scheme
+
 
         // append the svg object to the div called 'my_dataviz'
         var svg = d3.select("#pieChart")
@@ -53,7 +54,7 @@ function d3PieChart(dataset){
           .attr('text-anchor', 'middle')
           .attr('alignment-baseline', 'middle')
           .text(function(d){ return d.data.key})
-          .style('fill', (_, i) => color(5))
+          .style('fill', (_, i) => "black")
 
           .attr('transform', (d) => {
             const [x, y] = arcGenerator.centroid(d);
@@ -62,7 +63,7 @@ function d3PieChart(dataset){
         //Function to update barchart when a piechart slice is clicked
         function click(d, i) {
             borough = d.data.key;
-            console.log("clicked!");
+            //console.log("clicked!");
             updateBarChart(d.data.key);
          }
 

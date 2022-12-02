@@ -14,6 +14,7 @@ function d3ScatterPlot() {
 
 	 d3.json("/get_scatterplot_data", function(data) {
         console.log(scatter);
+        //[college enrollment, high school graduation]
         dummyData = {"Henry Street School for International Studies": [40, 45], "University Neighborhood High School": [77, 78], 
 		"Marta Valle High School": [99, 100]};
 		// console.log(d3.entries(dummyData));
@@ -55,6 +56,21 @@ function d3ScatterPlot() {
 	  svg.append("g")
 	    .attr("transform", "translate(0," + height + ")")
 	    .call(d3.axisBottom(x));
+	  
+	  svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width/2 + margin.left + 10)
+      .attr("y", height + margin.top + 18)
+      .style("fill", "black")
+      .text("College Enrollment (%)");
+      
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left + 35)
+      .attr("x", -margin.top - height/2 + 80)
+      .style("fill", "black")
+      .text("High School Graduation (%)")
 
 	  // Add Y axis
 	  var y = d3.scaleLinear()
